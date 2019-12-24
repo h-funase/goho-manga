@@ -4,7 +4,6 @@
 <% end %>
 <div class="contents row">
   <% @comics.each do |comic| %>
-        <%= render partial: "comic", locals: { comic: comic } %>
+    <%= render partial: "comic", locals: { comic: comic } %>
   <% end %>
-  <%= paginate(@comics) %>
 </div>

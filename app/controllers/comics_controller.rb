@@ -4,7 +4,7 @@ class ComicsController < ApplicationController
 
   
   def index
-    @comics = Comic.includes(:user)
+    @comics = Comic.includes(:user).order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -30,7 +30,12 @@ class ComicsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @comic.comments.includes(:user)
+  end
 
+  def search
+    @comics = Comic.search(params[:keyword])
   end
 
   private
@@ -40,7 +45,7 @@ class ComicsController < ApplicationController
 
   end
 
-  def set_tweet
+  def set_comic
     @comic = Comic.find(params[:id]) 
   end
 
