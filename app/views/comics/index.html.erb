@@ -6,8 +6,9 @@
   <% @comics.each do |comic| %>
     <%= render partial: "comic", locals: { comic: comic } %>
     <% comic.tags.each do|tag| %>
-      <%= tag.name %>
+      <%= link_to"#{tag.name}",comics_path(tag_id: tag.id) %>
     <% end %>  
   <% end %>
+  
   <%= paginate(@comics) %>
 </div>
