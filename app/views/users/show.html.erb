@@ -1,0 +1,10 @@
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+
+  <% @comics.each do |comic| %>
+    <div class="content_post" style="background-image: url(<%= comic.image %>);">
+      <%= simple_format(comic.text) %>
+     <!-- <span class="name"><%= comic.title %></span> -->
+    </div>
+  <% end %>
+</div>

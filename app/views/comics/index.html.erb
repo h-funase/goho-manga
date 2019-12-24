@@ -1,0 +1,26 @@
+<div class="contents row">
+  <% @comics.each do |comic| %>
+    <div class="content_post" style="background-image: url(<%= comic.image %>);">
+      <div class="more">
+        <span><%= image_tag 'arrow_top.png' %></span>
+        <ul class="more_list">
+          <li>
+            <%= link_to '詳細', "/comics/#{comic.id}", method: :get %>
+          </li>
+          <li>
+            <%= link_to '編集', "/comics/#{comic.id}/edit", method: :get %>
+          </li>
+          <li>
+            <%= link_to '削除', "/comics/#{comic.id}", method: :delete %>
+          </li>
+        </ul>
+      </div>
+      <%= simple_format(comic.text) %>
+      <span class="name">
+        <a href="/users/<%= tweet.user.id %>">
+          <span>投稿者</span><%= comic.user.nickname %>
+        </a>
+      </span>
+    </div>
+  <% end %>
+</div>
