@@ -4,7 +4,10 @@
 <% end %>
 <div class="contents row">
   <% @comics.each do |comic| %>
-        <%= render partial: "comic", locals: { comic: comic } %>
+    <%= render partial: "comic", locals: { comic: comic } %>
+    <% comic.tags.each do|tag| %>
+      <%= tag.name %>
+    <% end %>  
   <% end %>
   <%= paginate(@comics) %>
 </div>

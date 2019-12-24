@@ -5,6 +5,7 @@ class ComicsController < ApplicationController
   
   def index
     @comics = Comic.includes(:user).order("created_at DESC").page(params[:page]).per(10)
+    
   end
 
   def new
@@ -12,7 +13,14 @@ class ComicsController < ApplicationController
   end
 
   def create
-    Comic.create(comic_params)
+    # binding.pry
+    @comic = Comic.new(comic_params)
+    @comic.save
+    redirect_to(root_path)
+    tag_list = params[:tag_name].split(",")
+    if @comic.save
+      @comic.save_comics(tag_list)
+    end
   end
 
   def destroy
@@ -40,9 +48,7 @@ class ComicsController < ApplicationController
 
   private
   def comic_params
-    params.require(:comic).permit(:title, :image, :text,:url).merge(user_id: current_user.id)
-
-
+    params.require(:comic).permit(:title, :image, :text,:url, :tag_list).merge(user_id: current_user.id)
   end
 
   def set_comic
