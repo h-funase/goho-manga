@@ -1,11 +1,10 @@
 <div class="contents row">
-  <div class="container">
+    <%= render partial: "comic", locals: { comic: comic } %>
     <%= form_with(model: @comic, local: true) do |form| %>
       <h3>
-        投稿する
+        タグを追加する
       </h3>
       <%= form.text_field :name, placeholder: "タグ名" %>
       <%= form.submit "SEND" %>
     <% end %>
-  </div>
 </div>

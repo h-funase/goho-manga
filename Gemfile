@@ -68,3 +68,4 @@ gem 'sprockets', '3.7.2'
 gem 'devise'
 
 gem 'kaminari'
+gem 'acts-as-taggable-on', '~> 6.0'

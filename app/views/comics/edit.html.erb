@@ -4,7 +4,11 @@
       <h3>
         編集する
       </h3>
-      <%= render partial: "form", locals: { form: form } %>
+      <%= form.text_field :title, placeholder: "タイトル" %>
+      <%= form.text_field :image, placeholder: "画像のURL" %>
+      <%= form.text_field :url, placeholder: "漫画のURL" %>
+      <%= form.text_area :text, placeholder: "紹介文" , rows: "10" %>
+      <%= form.submit "SEND" %>
     <% end %>
   </div>
 </div>

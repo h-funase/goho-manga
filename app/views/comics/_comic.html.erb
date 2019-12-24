@@ -12,6 +12,11 @@
             <li>
               <%= link_to '削除', "/comics/#{comic.id}", method: :delete %>
             </li>
+
+            <li>
+              <%= link_to 'タグ編集', "/tags/new", method: :get %>
+            </li>
+            
           <% end %>
         </ul>
       </div>
