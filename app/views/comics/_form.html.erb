@@ -1,7 +1,7 @@
 <%= form.text_field :title, placeholder: "タイトル" %>
 <%= form.text_field :image, placeholder: "画像のURL" %>
 <%= form.text_field :url, placeholder: "漫画のURL" %>
-<%= form.text_area :text, placeholder: "紹介文" , rows: "10" %>
+<%= form.text_area :text, placeholder: "紹介文" , rows: "5" %>
 <label for="exampleInputEmail1">タグ</label>
-<textarea name="tag_name" class="form-control post_form"></textarea>
+<textarea  name="tag_name" placeholder="複数のタグを同時に登録する時は「 , 」（カンマ）で区切ってね" class="form-control post_form"></textarea>
 <%= form.submit "SEND" %>

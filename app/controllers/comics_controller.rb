@@ -10,7 +10,6 @@ class ComicsController < ApplicationController
       @comics = @tag.comics.order("created_at DESC").page(params[:page]).per(10)
     else
     # ↑タグ絞り込み表示実験中・・・
-
       @comics = Comic.includes(:user).order("created_at DESC").page(params[:page]).per(10)
     end
   end
@@ -50,7 +49,9 @@ class ComicsController < ApplicationController
   end
 
   def search
+    
     @comics = Comic.search(params[:keyword])
+  
   end
 
   private

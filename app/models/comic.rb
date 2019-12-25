@@ -7,10 +7,26 @@ class Comic < ApplicationRecord
 
   def self.search(search)
     return Comic.all unless search
-    Comic.where('text LIKE(?)', "%#{search}%")
+
+    search = "%#{search}%"
+
+
+    # categories = [カテゴリーID] 
+    # conditions = {} 
+    # unless categories.empty?
+    #   conditions[:restaurant_categories] = {} 
+    #   conditions[:restaurant_categories][:category_id] = categories.map(&:to_i)
+    # end
+    # @query = Restaurant.left_joins( :restaurant_categories ).where(conditions).uniq 
+    
+    # > order = Order.includes(:customers).where(customer: { id: 1 })
+
+    # Comic.includes(:tags).where('comics.title LIKE(?) OR　tags.name LIKE(?)','%#{search}%','%#{search}%')
+    Comic.includes(:tags).where('comics.title LIKE(?) OR　tags.name LIKE(?)','%#{search}%','%#{search}%')
+    # Comic.find_by_sql(["select * from comics where title like ? ", search])
   end
 
-  def save_comics(savecomic_tags)
+  def save_comics(savecomic_ags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - savecomic_tags
     new_tags = savecomic_tags - current_tags
