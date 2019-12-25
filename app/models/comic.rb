@@ -21,9 +21,10 @@ class Comic < ApplicationRecord
     
     # > order = Order.includes(:customers).where(customer: { id: 1 })
 
-    # Comic.includes(:tags).where('comics.title LIKE(?) OR　tags.name LIKE(?)','%#{search}%','%#{search}%')
-    Comic.includes(:tags).where('comics.title LIKE(?) OR　tags.name LIKE(?)','%#{search}%','%#{search}%')
-    # Comic.find_by_sql(["select * from comics where title like ? ", search])
+    
+
+    Comic.joins(:tags).where(['comics.title LIKE ? OR tags.name LIKE ?',search,search])
+    # Comic.includes(:tags).find_by_sql(["select * from comics where title like ? OR select * from tags where name like ?",search,search])
   end
 
   def save_comics(savecomic_ags)
