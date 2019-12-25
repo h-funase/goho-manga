@@ -4,12 +4,10 @@ class ComicsController < ApplicationController
 
   
   def index
-    # ↓タグ絞り込み表示実験中・・・
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @comics = @tag.comics.order("created_at DESC").page(params[:page]).per(10)
     else
-    # ↑タグ絞り込み表示実験中・・・
       @comics = Comic.includes(:user).order("created_at DESC").page(params[:page]).per(10)
     end
   end
@@ -46,6 +44,7 @@ class ComicsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @comic.comments.includes(:user)
+    @like = Like.new
   end
 
   def search

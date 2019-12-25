@@ -4,6 +4,8 @@ class Comic < ApplicationRecord
   has_many :comments
   has_many :comic_tags, dependent: :destroy
   has_many :tags, through: :comic_tags
+  has_many :likes
+  has_many :liked_users, through: :likes, source: :user
 
   def self.search(search)
     return Comic.all unless search
@@ -27,7 +29,7 @@ class Comic < ApplicationRecord
     # Comic.includes(:tags).find_by_sql(["select * from comics where title like ? OR select * from tags where name like ?",search,search])
   end
 
-  def save_comics(savecomic_ags)
+  def save_comics(savecomic_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - savecomic_tags
     new_tags = savecomic_tags - current_tags

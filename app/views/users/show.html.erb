@@ -4,5 +4,9 @@
   <% @comics.each do |comic| %>
         <%= render partial: "comics/comic", locals: { comic: comic } %>
   <% end %>
+  <h3>いいねしている投稿</h3>
+<% @user.liked_comics.each do |comic| %>
+  <%= render partial: "comics/comic", locals: { comic: comic } %> 
+<% end %>
   <%= paginate(@comics) %>
 </div>

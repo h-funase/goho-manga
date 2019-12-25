@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_105458) do
+ActiveRecord::Schema.define(version: 2019_12_25_075210) do
 
   create_table "comic_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "comic_id"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2019_12_24_105458) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "comic_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comic_id"], name: "index_likes_on_comic_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -63,4 +72,6 @@ ActiveRecord::Schema.define(version: 2019_12_24_105458) do
 
   add_foreign_key "comic_tags", "comics"
   add_foreign_key "comic_tags", "tags"
+  add_foreign_key "likes", "comics"
+  add_foreign_key "likes", "users"
 end
