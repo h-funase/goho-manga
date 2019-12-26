@@ -4,6 +4,8 @@ class ComicsController < ApplicationController
 
   
   def index
+    @all_ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(3).pluck(:comic_id))
+
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @comics = @tag.comics.order("created_at DESC").page(params[:page]).per(10)
@@ -33,7 +35,6 @@ class ComicsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -48,9 +49,7 @@ class ComicsController < ApplicationController
   end
 
   def search
-    
     @comics = Comic.search(params[:keyword])
-  
   end
 
   private
