@@ -9,23 +9,8 @@ class Comic < ApplicationRecord
 
   def self.search(search)
     return Comic.all unless search
-
     search = "%#{search}%"
-
-
-    # categories = [カテゴリーID] 
-    # conditions = {} 
-    # unless categories.empty?
-    #   conditions[:restaurant_categories] = {} 
-    #   conditions[:restaurant_categories][:category_id] = categories.map(&:to_i)
-    # end
-    # @query = Restaurant.left_joins( :restaurant_categories ).where(conditions).uniq 
-    
-    # > order = Order.includes(:customers).where(customer: { id: 1 })
-
-    
-
-    Comic.joins(:tags).where(['comics.title LIKE ? OR tags.name LIKE ?',search,search])
+    Comic.joins(:tags).where(['comics.title LIKE ? OR tags.name LIKE ?',search,search]).uniq
     # Comic.includes(:tags).find_by_sql(["select * from comics where title like ? OR select * from tags where name like ?",search,search])
   end
 
@@ -34,15 +19,12 @@ class Comic < ApplicationRecord
     old_tags = current_tags - savecomic_tags
     new_tags = savecomic_tags - current_tags
   
-      # Destroy old taggings:
-      old_tags.each do |old_name|
-        self.tags.delete Tag.find_by(name:old_name)
-      end
-  
-      # Create new taggings:
-      new_tags.each do |new_name|
-        comic_tag = Tag.find_or_create_by(name:new_name)
-        self.tags << comic_tag
-      end
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name:old_name)
     end
+    new_tags.each do |new_name|
+      comic_tag = Tag.find_or_create_by(name:new_name)
+      self.tags << comic_tag
+    end
+  end
 end
