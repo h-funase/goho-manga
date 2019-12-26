@@ -1,6 +1,7 @@
 <div class="contents row">
   <div class="container">
-    <%= form_with(model: @comic, local: true) do |form| %>
+    <%# <%= form_with(model: @comic, local: true) do |form| %> %>
+    <%= form_for @comic, url: comics_path do |form| %>
       <h3>
         投稿する
       </h3>
