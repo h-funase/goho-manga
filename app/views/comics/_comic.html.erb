@@ -15,13 +15,12 @@
           <% end %>
         </ul>
       </div>
-      <%= simple_format(comic.text) %>
+      <%= simple_format(comic.title) %>
+       
       <span class="name">
         <a href="/users/<%= comic.user.id %>">
           <span>投稿者</span><%= comic.user.nickname %>
         </a>
       </span>
-
-       
-
     </div>
+     <%= simple_format(comic.text) %>
