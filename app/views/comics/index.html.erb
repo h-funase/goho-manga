@@ -8,7 +8,7 @@
     <% comic.tags.each do|tag| %>
       <%= link_to"#{tag.name}",comics_path(tag_id: tag.id) %>
     <% end %>  
-            <%="いいね数#{comic.liked_users.count}" %>
+      <%="いいね数#{comic.liked_users.count}" %>
   <% end %>
 
   <%= paginate(@comics) %>
