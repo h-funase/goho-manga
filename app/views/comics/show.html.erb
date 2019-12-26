@@ -1,7 +1,6 @@
 <div class ="contents row">
   <div class="content_post" style="background-image: url(<%= @comic.image %>);">
     <% if user_signed_in? && current_user.id == @comic.user_id %>
-
     <div class="more">
       <span><%= image_tag 'arrow_top.png' %></span>
       <ul class="more_list">
@@ -21,16 +20,18 @@
       </a>
     </span>
   </div>
-  <div class="container">
-    <% if current_user %>
-      <%= form_with(model: [@comic, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-        <%= form.submit "SEND" %>
-      <% end %>
-    <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
-    <% end %>
 
+  <div class="container">
+  <%= link_to "第1話","#{@comic.url}"%><br>
+  <% @comic.tags.each do|tag| %>
+      <%= link_to" ・#{tag.name}",comics_path(tag_id: tag.id) %>
+    <% end %><br>
+  <h3>いいね件数: <%= @comic.likes.count %></h3>
+<% if current_user.already_liked?(@comic) %>
+  <%= button_to 'いいねを取り消す', comic_like_path(@comic), method: :delete %>
+<% else %>
+  <%= button_to 'いいね', comic_likes_path(@comic) %>
+<% end %>
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
       <% if @comments %>
@@ -42,5 +43,13 @@
         <% end %>
       <% end %>
     </div>
+    <% if current_user %>
+      <%= form_with(model: [@comic, @comment], local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+        <%= form.submit "送信" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
   </div>
 </div>

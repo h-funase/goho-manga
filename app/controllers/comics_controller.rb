@@ -4,7 +4,14 @@ class ComicsController < ApplicationController
 
   
   def index
-    @comics = Comic.includes(:user).order("created_at DESC").page(params[:page]).per(10)
+    @all_ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(3).pluck(:comic_id))
+
+    if params[:tag_id]
+      @tag = Tag.find(params[:tag_id])
+      @comics = @tag.comics.order("created_at DESC").page(params[:page]).per(10)
+    else
+      @comics = Comic.includes(:user).order("created_at DESC").page(params[:page]).per(10)
+    end
   end
 
   def new
@@ -12,7 +19,14 @@ class ComicsController < ApplicationController
   end
 
   def create
-    Comic.create(comic_params)
+    # binding.pry
+    @comic = Comic.new(comic_params)
+    @comic.save
+    redirect_to(root_path)
+    tag_list = params[:tag_name].split(",")
+    if @comic.save
+      @comic.save_comics(tag_list)
+    end
   end
 
   def destroy
@@ -21,7 +35,6 @@ class ComicsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -32,6 +45,7 @@ class ComicsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @comic.comments.includes(:user)
+    @like = Like.new
   end
 
   def search
@@ -40,9 +54,7 @@ class ComicsController < ApplicationController
 
   private
   def comic_params
-    params.require(:comic).permit(:title, :image, :text,:url).merge(user_id: current_user.id)
-
-
+    params.require(:comic).permit(:title, :image, :text,:url, :tag_list).merge(user_id: current_user.id)
   end
 
   def set_comic
