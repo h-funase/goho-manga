@@ -19,13 +19,19 @@ class ComicsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @comic = Comic.new(comic_params)
-    @comic.save
-    redirect_to(root_path)
-    tag_list = params[:tag_name].split(",")
+       
+    
+    tag_list = params[:tag_name].split(",")    
+    @comic.save 
+
     if @comic.save
-      @comic.save_comics(tag_list)
+      @comic.save_comics(tag_list)  
+      redirect_to(root_path)
+    else
+      # binding.pry
+      render :new
+      flash.notice = '投稿に失敗しました'
     end
   end
 
@@ -54,7 +60,9 @@ class ComicsController < ApplicationController
 
   private
   def comic_params
-    params.require(:comic).permit(:title, :image, :text,:url, :tag_list).merge(user_id: current_user.id)
+    # params.require(:comic).permit(:title, :image, :text, :url, :tag_list).merge(user_id: current_user.id)
+    params.require(:comic).permit(:title, :image, :text, :tag_list, episodes_attributes:[:id,:url,:story_number]).merge(user_id: current_user.id)
+    
   end
 
   def set_comic
@@ -64,6 +72,5 @@ class ComicsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
-
 
 end

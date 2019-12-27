@@ -7,6 +7,9 @@ class Comic < ApplicationRecord
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
 
+  has_many :episodes, inverse_of: :comic
+  accepts_nested_attributes_for :episodes
+
   def self.search(search)
     return Comic.all unless search
     search = "%#{search}%"
@@ -27,4 +30,9 @@ class Comic < ApplicationRecord
       self.tags << comic_tag
     end
   end
+
+  
+  
+
+
 end

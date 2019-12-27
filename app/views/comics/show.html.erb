@@ -22,7 +22,7 @@
   </div>
 
   <div class="container">
-  <%= link_to "第1話","#{@comic.url}"%><br>
+  <%# <%= link_to "第1話","#{}"%><br> 
   <% @comic.tags.each do|tag| %>
       <%= link_to" ・#{tag.name}",comics_path(tag_id: tag.id) %>
     <% end %><br>
