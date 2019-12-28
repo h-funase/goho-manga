@@ -1,4 +1,3 @@
-<% if user_signed_in? && current_user.id == @comic.user_id %>
 
   <%= form.text_field :title, placeholder: "タイトル" %>
   <%= form.text_field :image, placeholder: "画像のURL" %>
@@ -7,9 +6,9 @@
       <%= i.text_field :url, placeholder: "漫画のURL",value:@url %> 
     <% end %>
   <%= form.text_area :text, placeholder: "紹介文" , rows: "3" %>
-<% end %>
+
 <%# <label for="exampleInputEmail1">タグ</label> %>
-<%= form.label :tag %>
+<%= form.label "タグ" %>
 <%= form.text_field :name,placeholder:"複数のタグを同時に登録する時は「 , 」（カンマ）で区切ってね", value: @tag_list %>
 
 <%# <textarea  name="tag_name" placeholder="複数のタグを同時に登録する時は「 , 」（カンマ）で区切ってね" class="form-control post_form"></textarea> %>
