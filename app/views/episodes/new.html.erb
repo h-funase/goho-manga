@@ -1,0 +1,14 @@
+<div class="contents row">
+  <div class="container">
+    <%= form_for @episode, url: "/comics/#{@comic.id}/episodes" do |form| %>
+      <h3>
+        投稿する
+      </h3>
+      <%= form.text_field :story_number, placeholder: "漫画の話数",value:@story_number %> 
+      <%= form.text_field :url, placeholder: "漫画のURL",value:@url %> 
+    
+      <%= hidden_field_tag :comic_id, @comic.id %>
+      <%= form.submit "送信" %>
+    <% end %>
+  </div>
+</div>
