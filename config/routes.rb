@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :comics do
     resources :likes, only: [:create, :destroy]
 
-    resources :episodes, only: [:new,:create,:destroy]
+    resources :episodes, only: [:new,:create,:edit,:update,:destroy]
     
 
     resources :comments, only: :create
