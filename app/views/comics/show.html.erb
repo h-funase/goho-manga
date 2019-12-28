@@ -27,6 +27,7 @@
   <%= link_to "第#{episode.story_number}話","#{episode.url}" %><br> 
   <% end %>
 
+  <%= link_to "ストーリーの追加",new_comic_episode_path(@comic)%>
   
 
   <% @comic.tags.each do|tag| %>
