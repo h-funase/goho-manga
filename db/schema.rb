@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_172557) do
+ActiveRecord::Schema.define(version: 2019_12_26_122603) do
 
   create_table "comic_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "comic_id"
@@ -23,10 +23,8 @@ ActiveRecord::Schema.define(version: 2019_12_26_172557) do
 
   create_table "comics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "episode", default: 1, null: false
-    t.integer "like_count"
     t.text "image", null: false
-    t.text "text", null: false
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -43,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_12_26_172557) do
 
   create_table "episodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "story_number"
-    t.string "url", default: "1"
+    t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "comic_id"
@@ -59,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_12_26_172557) do
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: "1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -22,10 +22,20 @@
   </div>
 
   <div class="container">
-  <%# <%= link_to "第1話","#{}"%><br> 
+  
+  <% @comic.episodes.each do |episode|%>
+  <%= link_to "第#{episode.story_number}話","#{episode.url}" %><br> 
+  <% end %>
+
+  
+
   <% @comic.tags.each do|tag| %>
-      <%= link_to" ・#{tag.name}",comics_path(tag_id: tag.id) %>
+      <%= link_to "・#{tag.name}",comics_path(tag_id: tag.id) %>
     <% end %><br>
+
+<%= link_to 'タグの編集',"/comics/#{@comic.id}/edit", method: :get %>
+
+
   <h3>いいね件数: <%= @comic.likes.count %></h3>
 <% if current_user.already_liked?(@comic) %>
   <%= button_to 'いいねを取り消す', comic_like_path(@comic), method: :delete %>
