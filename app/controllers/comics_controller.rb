@@ -21,15 +21,13 @@ class ComicsController < ApplicationController
   def create
     @comic = Comic.new(comic_params)
        
-    
-    tag_list = params[:tag_name].split(",")    
+    tag_list = params[:comic][:name].split(",")    
     @comic.save 
 
     if @comic.save
       @comic.save_comics(tag_list)  
       redirect_to(root_path)
     else
-      # binding.pry
       render :new
       flash.notice = '投稿に失敗しました'
     end
@@ -41,11 +39,22 @@ class ComicsController < ApplicationController
   end
 
   def edit
+    @story_number = @comic.episodes.pluck(:story_number)
+    @url = @comic.episodes.pluck(:url)
+    @tag_list = @comic.tags.pluck(:name).join(",")
   end
 
   def update
-    comic = Comic.find(params[:id])
-    comic.update(comic_params)
+    @comic = Comic.find(params[:id])
+    @comic.update(comic_params)
+
+    tag_list = params[:comic][:name].to_s.split(",")
+    if @comic.update(comic_params)
+      @comic.save_comics(tag_list)
+      redirect_to @comic, notice: '記事を編集しました' 
+    else
+      render :edit 
+    end
   end
 
   def show
@@ -58,11 +67,11 @@ class ComicsController < ApplicationController
     @comics = Comic.search(params[:keyword])
   end
 
+
+
   private
   def comic_params
-    # params.require(:comic).permit(:title, :image, :text, :url, :tag_list).merge(user_id: current_user.id)
     params.require(:comic).permit(:title, :image, :text, :tag_list, episodes_attributes:[:id,:url,:story_number]).merge(user_id: current_user.id)
-    
   end
 
   def set_comic
@@ -72,5 +81,4 @@ class ComicsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
-
 end
