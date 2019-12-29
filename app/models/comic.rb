@@ -4,7 +4,7 @@ class Comic < ApplicationRecord
   has_many :comments
   has_many :comic_tags, dependent: :destroy
   has_many :tags, through: :comic_tags
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
   has_many :episodes, inverse_of: :comic
@@ -30,9 +30,4 @@ class Comic < ApplicationRecord
       self.tags << comic_tag
     end
   end
-
-  
-  
-
-
 end
