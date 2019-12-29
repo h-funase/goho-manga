@@ -24,25 +24,34 @@
   <div class="container">
   
   <% @comic.episodes.each do |episode|%>
-  <%= link_to "第#{episode.story_number}話","#{episode.url}" %><br> 
+    <%= link_to "第#{episode.story_number}話","#{episode.url}" %><br> 
+    <% if user_signed_in? && current_user.id == @comic.user_id %>
+      <%= link_to "編集","/comics/#{@comic.id}/episodes/#{episode.id}/edit"%>
+      <%= link_to " 削除","/comics/#{@comic.id}/episodes/#{episode.id}",method: :delete %><br><br>     
+      <% end %>
+
+
+
   <% end %>
 
-  <%= link_to "ストーリーの追加",new_comic_episode_path(@comic)%>
-  
+  <%= link_to "ストーリーの追加",new_comic_episode_path(@comic)%><br><br> 
 
   <% @comic.tags.each do|tag| %>
       <%= link_to "・#{tag.name}",comics_path(tag_id: tag.id) %>
-    <% end %><br>
+    <% end %><br><br>
 
-<%= link_to 'タグの編集',"/comics/#{@comic.id}/edit", method: :get %>
-
+<%= link_to 'タグの編集',"/comics/#{@comic.id}/tags/edit", method: :get %>
 
   <h3>いいね件数: <%= @comic.likes.count %></h3>
-<% if current_user.already_liked?(@comic) %>
-  <%= button_to 'いいねを取り消す', comic_like_path(@comic), method: :delete,remote: true  %>
-<% else %>
-  <%= button_to 'いいね', comic_likes_path(@comic), remote: true  %>
-<% end %>
+
+
+
+
+<%= render partial: 'comics',locals: { comic: @comic }  %>
+
+
+
+
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
       <% if @comments %>
