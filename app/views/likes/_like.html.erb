@@ -1,7 +1,7 @@
 <div class="like-link" id="like-link-<%= comic.id %>">
   <% if current_user.likes.find_by(comic_id: comic.id) %>
     <%= link_to unlike_path(comic.id), method: :delete, remote: true do %>
-      いいね数<div class = "unlike_button"><i class="fas fa-thumbs-up"></i><%= comic.likes.count %></div>
+      <div class = "unlike_button"><i class="fas fa-thumbs-up"></i><%= "#{comic.likes.count}いいね済み" %></div>
       
       <% if flash[:notice] %>
         <%= flash[:notice] %>
@@ -10,7 +10,7 @@
     <% end %> 
   <% else %>
     <%= link_to like_path(comic.id), method: :post, remote: true do %>
-      いいね数<div class = "like_button"><i class="far fa-thumbs-up"></i><%= comic.likes.count %></div>
+      <div class = "like_button"><i class="far fa-thumbs-up"></i><%= "#{comic.likes.count}いいねする" %></div>
    
     <% if flash[:notice] %>
       <%= flash[:notice] %>

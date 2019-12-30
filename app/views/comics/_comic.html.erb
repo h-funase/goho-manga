@@ -14,7 +14,7 @@
     <p class="content_text"><%= comic.text %></p> 
     
     <% comic.tags.each do|tag| %>
-      <%= link_to"・#{tag.name}",comics_path(tag_id: tag.id) %>
+      <div class="tags_name"><%= link_to"・#{tag.name}",comics_path(tag_id: tag.id) %></div>
     <% end %><br><br>
     <div class="like_view">
       <a class="far fa-thumbs-up"></a>

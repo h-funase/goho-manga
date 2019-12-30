@@ -75,3 +75,4 @@ gem 'jquery-rails'
 
 gem 'font-awesome-sass'
 
+gem 'acts-as-taggable-on'

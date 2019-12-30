@@ -10,6 +10,10 @@ class Comic < ApplicationRecord
   has_many :episodes, inverse_of: :comic
   accepts_nested_attributes_for :episodes , allow_destroy: true
 
+
+  # acts_as_taggable_on :labels 
+  
+
   def self.search(search)
     return Comic.all unless search
     search = "%#{search}%"

@@ -30,15 +30,12 @@
       <%= link_to "編集","/comics/#{@comic.id}/episodes/#{episode.id}/edit"%>
       <%= link_to " 削除","/comics/#{@comic.id}/episodes/#{episode.id}",method: :delete %><br><br>     
       <% end %>
-
-
-
   <% end %>
 
   <%= link_to "ストーリーの追加",new_comic_episode_path(@comic)%><br><br> 
 
   <% @comic.tags.each do|tag| %>
-      <%= link_to "・#{tag.name}",comics_path(tag_id: tag.id) %>
+      <div class="tags_name"><%= link_to "・#{tag.name}",comics_path(tag_id: tag.id) %></div>
     <% end %><br><br>
 
 <%= link_to 'タグの編集',"/comics/#{@comic.id}/tags/edit", method: :get %>

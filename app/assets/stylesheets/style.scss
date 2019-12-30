@@ -230,8 +230,6 @@ div.contents.row {
   // position: relative;
   // display:flex;
   // margin-right:500px;
-  
-  
   h2 {
     @include boxBase(20px 0, 0);
     font-weight: normal;
@@ -272,16 +270,19 @@ div.contents.row {
         font-size:22px;
         font-weight: bold;
       }
+      
       .content_text {
         
         word-wrap: break-word;
         width:350px;
       }
       div.like_view {
-        padding-left:8px;
+        padding:7px;
         width:130px;
         background-color:lightgreen;
-        border-radius: 5px;
+        border-radius: 10px;
+        border:1px solid;
+        margin-left:10px;
         .like_count {
           color:white;
         }
@@ -410,8 +411,6 @@ footer {
   }
 }
 .search-form {
-  margin-left:270px;
-
   text-align: center;
   padding-top: 32px;
   .search-input {
@@ -422,4 +421,11 @@ footer {
   .search-btn {
     width: 10%;
   }
+}
+.tags_name {
+  background-color:rgba(255, 166, 0, 0.767);
+  display:inline;
+  margin-left:10px;
+  padding:8px;
+  border-radius:8px;
 }

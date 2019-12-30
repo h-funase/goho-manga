@@ -83,6 +83,8 @@ class ComicsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
+  
+
   # def ranks_set
   #   @all_ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(3).pluck(:comic_id))
   # end
