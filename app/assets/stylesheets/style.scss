@@ -3,6 +3,8 @@
 @import 'font-awesome';
 @import url("likes.scss");
 @import url("right-bar.scss");
+@import url("left-bar.scss");
+
 /*
  * "ほのか明朝" licensed under the IPA Font License Agreement v1.0
  * http://fontfree.me/966（配布元のURL）
@@ -19,15 +21,9 @@
 
 .show_image {
   height:450px;
-  background-size: cover;
-  // background-size: contain;  
+  background-size: cover; 
   background-position:  center;
-  
-
-
 }
-
-
 $accent: #57C3E9;
 $black: #292929;
 $dark: #666;
@@ -35,10 +31,7 @@ $darkGray: #999999;
 $gray: #D8D8D8;
 $lightGray: #f5f5f3;
 $white: white;
-
-
 //mixin
-
 @mixin boxBase($margin: 30px auto, $padding: 10px) {
   margin: $margin;
   padding: $padding;
@@ -140,8 +133,17 @@ header.header {
   left: 0;
   right: 0;
   z-index: 5;
-  height: 62px;
+  height: 80px;
+  .site-title {
+    float:left;
+    font-size:35px;
+    margin-top:4px;
+    margin-left:60px;
+
+    
+  }
   div.header__bar.row {
+    float:right;
     position: relative;
     h1.grid-6 {
       font-size: 20px;
@@ -226,7 +228,7 @@ header.header {
 div.contents.row {
   // position: relative;
   // display:flex;
-  margin-right:600px;
+  // margin-right:500px;
   
   
   h2 {
@@ -242,16 +244,16 @@ div.contents.row {
   font-family: "游ゴシック", "YuGothic";
   }
   div.content_post {
-    // @include boxBase(20px 0 ,30px);
-    margin-top:35px;
+    width:100%;
+    margin-top:50px;
+    margin-bottom:80px;
     position: relative;
     display: flex;
-    // justify-content:space-between;
-    
+    background-color: white;
+    border-radius: 10px;
+
     div.content_image {
-      // @include boxBase(20px 0 ,30px);
     height: 250px;
-    // object-fit: cover;
     width:300px;
     color: #fff;
     background-size: cover;
@@ -260,8 +262,8 @@ div.contents.row {
     box-shadow: 0 0 10px rgba($black,0.2);
     }
     div.contents {
-      margin-left:20px;
-      margin-top:20px;
+      // margin-left:20px;
+      // margin-top:20px;
       .content_title {
         font-size:22px;
         font-weight: bold;
@@ -272,18 +274,6 @@ div.contents.row {
       }
     }
     
-    // &:after {
-    //   content: '';
-    //   position: absolute;
-    //   top: 0;
-    //   bottom: 0;
-    //   left: 0;
-    //   right: 0;
-    //   @include filter-gradient(#000000, #a60000, vertical);
-    //   @include background-image(linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,0.85) 100%));
-    //   z-index: 1;
-    //   border-radius: 3px;
-    // }
     .more {
       position: absolute;
       cursor: pointer;
@@ -324,20 +314,6 @@ div.contents.row {
       }
     }
     
-    // p {
-    //   // フォントを元通りにするにはここをコメントアウト解除しろ
-    //   // @extend .serif;
-    //   position: absolute;
-    //   left: 30px;
-    //   right: 100px;
-    //   bottom: 30px;
-    //   margin-left: 200px;
-
-    //   font-size: 20px;
-    //   z-index: 2;
-    //   font-weight: bold;
-    //   text-shadow: 0 0 2px #000, 0 0 1px #000, 0 0 1px #000;
-    // }
     span.name {
       position: absolute;
       right: 30px;
@@ -387,7 +363,6 @@ form {
   input[type="submit"] {
     @extend .transition;
     background-color: $accent;
-    border-radius: 20px;
     color: #fff;
     border: 0;
     font-size: 18px;
@@ -420,8 +395,9 @@ footer {
     text-align: center;
   }
 }
-
 .search-form {
+  margin-left:270px;
+
   text-align: center;
   padding-top: 32px;
   .search-input {
