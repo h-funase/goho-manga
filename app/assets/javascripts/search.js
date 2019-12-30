@@ -11,7 +11,8 @@ $(function() {
                                 <a href="/comics/${comic.id}" data-method="delete" >削除</a>
                               </li>` : "";
 
-    var html = `<div class="content_post" style="background-image: url(${comic.image});">
+    var html = `<div class="content_post">
+                  <div class="content_image" style="background-image: url(${comic.image});">
                   <div class="more">
                     <span><img src="/assets/arrow_top.png"></span>
                     <ul class="more_list">
@@ -27,6 +28,7 @@ $(function() {
                       <span>投稿者</span>${comic.nickname}
                     </a>
                   </span>
+                </div>
                 </div>`
     search_list.append(html);
    }
