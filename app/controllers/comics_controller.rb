@@ -1,11 +1,10 @@
 class ComicsController < ApplicationController
   before_action :set_comic, only: [:edit, :show]
   before_action :move_to_index, except: [:index, :show]
-
+  # before_action :ranks_set
   
   def index
-    @all_ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(3).pluck(:comic_id))
-
+    # @all_ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(3).pluck(:comic_id))
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
       @comics = @tag.comics.order("created_at DESC").page(params[:page]).per(10)
@@ -20,10 +19,8 @@ class ComicsController < ApplicationController
 
   def create
     @comic = Comic.new(comic_params)
-       
     tag_list = params[:comic][:name].split(",")    
     @comic.save 
-
     if @comic.save
       @comic.save_comics(tag_list)  
       redirect_to(root_path)
@@ -85,4 +82,8 @@ class ComicsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
+
+  # def ranks_set
+  #   @all_ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(3).pluck(:comic_id))
+  # end
 end

@@ -1,3 +1,33 @@
 // Place all the styles related to the likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.like-link {
+  width:auto;
+}
+i.far  {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400; 
+  content: "\f164";
+}
+.unlike_button {
+  background-color:limegreen;
+  border: solid 1px;
+  opacity: 0.9;
+  width:40px;
+  border-radius: 8px;
+  padding-left:5px;
+}
+
+i.fas {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; 
+  content: "\f164";
+}
+.like_button {
+  background-color:lightgreen;
+  border: solid 1px;
+  width:40px;
+  border-radius: 8px;
+  padding-left:5px;
+
+}

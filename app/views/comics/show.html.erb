@@ -1,5 +1,6 @@
 <div class ="contents row">
-  <div class="content_post" style="background-image: url(<%= @comic.image %>);">
+  <div class="show_image"style="background-image: url(<%= @comic.image %>);">
+  <div class="content_post" >
     <% if user_signed_in? && current_user.id == @comic.user_id %>
     <div class="more">
       <span><%= image_tag 'arrow_top.png' %></span>  
@@ -20,11 +21,11 @@
       </a>
     </span>
   </div>
+  </div>
 
   <div class="container">
-  
   <% @comic.episodes.each do |episode|%>
-    <%= link_to "第#{episode.story_number}話","#{episode.url}" %><br> 
+    <b><%= link_to "第#{episode.story_number}話","#{episode.url}" %></b><br> 
     <% if user_signed_in? && current_user.id == @comic.user_id %>
       <%= link_to "編集","/comics/#{@comic.id}/episodes/#{episode.id}/edit"%>
       <%= link_to " 削除","/comics/#{@comic.id}/episodes/#{episode.id}",method: :delete %><br><br>     
@@ -41,17 +42,8 @@
     <% end %><br><br>
 
 <%= link_to 'タグの編集',"/comics/#{@comic.id}/tags/edit", method: :get %>
-
-  <h3>いいね件数: <%= @comic.likes.count %></h3>
-
-
-
-
+  <!--<h3>いいね件数: <%= @comic.likes.count %></h3>-->
 <%= render partial: 'comics',locals: { comic: @comic }  %>
-
-
-
-
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
       <% if @comments %>
@@ -72,4 +64,3 @@
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
   </div>
-</div>

@@ -20,7 +20,6 @@
       })();
     </script>
   </head>
-
   <body>
 <%# これでターボリンクが無効されて、再読み込みしなくてもインクリメンタルサーチができるらしい %>
   <% if content_for?(:body_attributes) %>
@@ -30,6 +29,7 @@
     <header class="header">
       <div class="header__bar row">
         <h1 class="grid-6"><a href="/">合法漫画</a></h1>
+        
         <% if user_signed_in? %>
           <div class="user_nav grid-6">
            <span><%= current_user.nickname %>
@@ -53,12 +53,16 @@
       
     </header>
 
+    <div class="right-bar">
+      <p>いいねランキング</p>
+      <% @all_ranks.each.with_index(1) do |comic, i| %> 
+        <%= "#{i}位#{comic.title}" %><br>
+      <% end %>
+    </div>
+
     <%= yield %>
 
     <footer>
-      <p>
-        Copyright GohoManga 2019.
-      </p>
     </footer>
   </body>
 </html>

@@ -1,5 +1,8 @@
 @import "compass";
-
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import url("likes.scss");
+@import url("right-bar.scss");
 /*
  * "ほのか明朝" licensed under the IPA Font License Agreement v1.0
  * http://fontfree.me/966（配布元のURL）
@@ -12,8 +15,18 @@
 //     font-weight: normal;
 //     font-style: normal;
 // }
-
 @import url(http://fonts.googleapis.com/css?family=Unica+One);
+
+.show_image {
+  height:450px;
+  background-size: cover;
+  // background-size: contain;  
+  background-position:  center;
+  
+
+
+}
+
 
 $accent: #57C3E9;
 $black: #292929;
@@ -51,7 +64,7 @@ line-height: 1.57;
   letter-spacing: 0.15em;
   font-size: 16px;
   color: $dark;
-  font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+  // font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
   margin: 0;
 }
 
@@ -211,6 +224,11 @@ header.header {
   }
 }
 div.contents.row {
+  // position: relative;
+  // display:flex;
+  margin-right:600px;
+  
+  
   h2 {
     @include boxBase(20px 0, 0);
     font-weight: normal;
@@ -224,26 +242,48 @@ div.contents.row {
   font-family: "游ゴシック", "YuGothic";
   }
   div.content_post {
-    @include boxBase(20px 0 ,30px);
+    // @include boxBase(20px 0 ,30px);
+    margin-top:35px;
     position: relative;
-    height: 400px;
+    display: flex;
+    // justify-content:space-between;
+    
+    div.content_image {
+      // @include boxBase(20px 0 ,30px);
+    height: 250px;
+    // object-fit: cover;
+    width:300px;
     color: #fff;
     background-size: cover;
     background-position: center center;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba($black,0.2);
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      @include filter-gradient(#000000, #a60000, vertical);
-      @include background-image(linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,0.85) 100%));
-      z-index: 1;
-      border-radius: 3px;
     }
+    div.contents {
+      margin-left:20px;
+      margin-top:20px;
+      .content_title {
+        font-size:22px;
+        font-weight: bold;
+      }
+      div.content_text {
+        word-wrap: break-word;
+        width:300px;
+      }
+    }
+    
+    // &:after {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    //   @include filter-gradient(#000000, #a60000, vertical);
+    //   @include background-image(linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,0.85) 100%));
+    //   z-index: 1;
+    //   border-radius: 3px;
+    // }
     .more {
       position: absolute;
       cursor: pointer;
@@ -283,18 +323,21 @@ div.contents.row {
         }
       }
     }
-    p {
-      @extend .serif;
-      position: absolute;
-      left: 30px;
-      right: 100px;
-      bottom: 30px;
-      margin: 0;
-      font-size: 20px;
-      z-index: 2;
-      font-weight: bold;
-      text-shadow: 0 0 2px #000, 0 0 1px #000, 0 0 1px #000;
-    }
+    
+    // p {
+    //   // フォントを元通りにするにはここをコメントアウト解除しろ
+    //   // @extend .serif;
+    //   position: absolute;
+    //   left: 30px;
+    //   right: 100px;
+    //   bottom: 30px;
+    //   margin-left: 200px;
+
+    //   font-size: 20px;
+    //   z-index: 2;
+    //   font-weight: bold;
+    //   text-shadow: 0 0 2px #000, 0 0 1px #000, 0 0 1px #000;
+    // }
     span.name {
       position: absolute;
       right: 30px;
