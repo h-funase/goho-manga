@@ -1,5 +1,6 @@
 <div class="content_post" >
-  <div class="content_image" style="background-image: url(<%= comic.image %>);"></div>
+  <div class="content_image" style="background-image: url(<%= comic.image %>);">
+  </div>
   <div class="contents">
     <div class="content_title"><%= link_to "#{comic.title}","/comics/#{comic.id}", method: :get %></div>
     <% if user_signed_in? && current_user.id == comic.user_id %>
@@ -15,7 +16,10 @@
     <% comic.tags.each do|tag| %>
       <%= link_to"・#{tag.name}",comics_path(tag_id: tag.id) %>
     <% end %><br><br>
-    <%="いいね数#{comic.liked_users.count}" %>
+    <div class="like_view">
+      <a class="far fa-thumbs-up"></a>
+      <a class="like_count"><%="いいね数#{comic.liked_users.count}" %></div>
+    </a>
   </div>
       <!--<span class="name">
         <a href="/users/<%= comic.user.id %>">

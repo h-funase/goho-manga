@@ -226,6 +226,7 @@ header.header {
   }
 }
 div.contents.row {
+  margin-right:700px;
   // position: relative;
   // display:flex;
   // margin-right:500px;
@@ -244,13 +245,15 @@ div.contents.row {
   font-family: "游ゴシック", "YuGothic";
   }
   div.content_post {
-    width:100%;
+    
+    width:1000px;
+    
     margin-top:50px;
     margin-bottom:80px;
     position: relative;
     display: flex;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 15px;
 
     div.content_image {
     height: 250px;
@@ -262,15 +265,26 @@ div.contents.row {
     box-shadow: 0 0 10px rgba($black,0.2);
     }
     div.contents {
-      // margin-left:20px;
-      // margin-top:20px;
+      
       .content_title {
+        margin-left:20px;
+        margin-top:20px;
         font-size:22px;
         font-weight: bold;
       }
-      div.content_text {
+      .content_text {
+        
         word-wrap: break-word;
-        width:300px;
+        width:350px;
+      }
+      div.like_view {
+        padding-left:8px;
+        width:130px;
+        background-color:lightgreen;
+        border-radius: 5px;
+        .like_count {
+          color:white;
+        }
       }
     }
     

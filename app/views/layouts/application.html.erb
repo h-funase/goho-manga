@@ -59,7 +59,7 @@
         <b><p>いいねランキング</p></b>
         <% @all_ranks.each.with_index(1) do |comic, i| %> 
           <div class="rank_in_title">
-            <%= "#{i}位#{comic.title}" %><br>
+            <%= "#{i}位#{comic.title}" %><br><%="いいね数#{comic.liked_users.count}" %>
           </div>
         <% end %>
       </div>
