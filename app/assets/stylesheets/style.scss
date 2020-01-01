@@ -226,7 +226,9 @@ header.header {
   }
 }
 div.contents.row {
-  margin-right:700px;
+  margin:0 auto;
+  width:calc(100% - 650px);
+  // margin-right:700px;
   // position: relative;
   // display:flex;
   // margin-right:500px;
@@ -243,9 +245,7 @@ div.contents.row {
   font-family: "游ゴシック", "YuGothic";
   }
   div.content_post {
-    
-    width:1000px;
-    
+    width:100%;
     margin-top:50px;
     margin-bottom:80px;
     position: relative;
@@ -255,7 +255,7 @@ div.contents.row {
 
     div.content_image {
     height: 250px;
-    width:300px;
+    width:400px;
     color: #fff;
     background-size: cover;
     background-position: center center;

@@ -3,6 +3,21 @@ $(function() {
   var search_list = $(".contents.row");
 
   function appendComic(comic) {
+    var html = `<div class="content_post">
+                  <div class="content_image" style="background-image: url(${comic.image});">
+                  </div>
+                  <div class="contents">
+                    <div class="content_title">${comic.title}</div><br>  
+                      <a href="/comics/${comic.id}" data-method="get" >詳細</a>
+                      ${current_user}
+                  
+                  <span class="name">
+                    <a href="/users/${comic.user_id}">
+                      <span>投稿者</span>${comic.nickname}
+                    </a>
+                  </span>
+                </div>
+                </div>`
     var current_user = comic.user_sign_in && comic.user_sign_in.id == comic.user_id ? 
                               `<li>
                                 <a href="/comics/${comic.id}/edit" data-method="get" >編集</a>
@@ -11,25 +26,7 @@ $(function() {
                                 <a href="/comics/${comic.id}" data-method="delete" >削除</a>
                               </li>` : "";
 
-    var html = `<div class="content_post">
-                  <div class="content_image" style="background-image: url(${comic.image});">
-                  <div class="more">
-                    <span><img src="/assets/arrow_top.png"></span>
-                    <ul class="more_list">
-                      <li>
-                        <a href="/comics/${comic.id}" data-method="get" >詳細</a>
-                      </li>
-                      ${current_user}
-                    </ul>
-                  </div>
-                  <p>${comic.title}</p><br>
-                  <span class="name">
-                    <a href="/users/${comic.user_id}">
-                      <span>投稿者</span>${comic.nickname}
-                    </a>
-                  </span>
-                </div>
-                </div>`
+    
     search_list.append(html);
    }
 
