@@ -7,10 +7,14 @@ $(function() {
                   <div class="content_image" style="background-image: url(${comic.image});">
                   </div>
                   <div class="contents">
-                    <div class="content_title">${comic.title}</div><br>  
-                      <a href="/comics/${comic.id}" data-method="get" >詳細</a>
-                      ${current_user}
-                  
+                    <a class="content_title "href="/comics/${comic.id}" data-method="get" >${comic.title}</a><br>  
+                    <p class="content_text">${ comic.text }</p>
+                    
+                    
+      <a class="tags_name" href="/comics?${tag.id}" data-method="get">${tag.name}</a>
+    <br><br>
+
+
                   <span class="name">
                     <a href="/users/${comic.user_id}">
                       <span>投稿者</span>${comic.nickname}

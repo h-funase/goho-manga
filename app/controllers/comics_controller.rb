@@ -62,6 +62,9 @@ class ComicsController < ApplicationController
 
   def search
     @comics = Comic.search(params[:keyword])
+    
+    @tag = Tag.search(params[:tag_id])
+    
     respond_to do |format|
       format.html
       format.json

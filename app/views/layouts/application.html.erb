@@ -33,13 +33,13 @@
           <h1 class="grid-6"></h1>
             <% if user_signed_in? %>
               <div class="user_nav grid-6">
-              <span><%= current_user.nickname %>
-              <ul class="user__info">
-                <li>
-                  <%= link_to "マイページ", "/users/#{current_user.id}" %>
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-                </li>
-               </ul>
+              <!-- <%= current_user.nickname %> -->
+              <%# <ul class="user__info"> %>
+                <%# <li> %>
+                  <%= link_to "マイページ[#{current_user.nickname}]", "/users/#{current_user.id}", class: "post" %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "post" %>
+                <%# </li> %>
+               <%# </ul> %>
               </span>
                 <%= link_to  "投稿する", "/comics/new", class: "post" %>
               </div>
