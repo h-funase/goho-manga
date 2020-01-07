@@ -63,7 +63,7 @@ class ComicsController < ApplicationController
   def search
     @comics = Comic.search(params[:keyword])
     
-    @tag = Tag.search(params[:tag_id])
+    
     
     respond_to do |format|
       format.html
@@ -75,7 +75,7 @@ class ComicsController < ApplicationController
 
   private
   def comic_params
-    params.require(:comic).permit(:title, :image, :text, :tag_list, episodes_attributes:[:id,:url,:story_number]).merge(user_id: current_user.id)
+    params.require(:comic).permit(:title, :image, :text, :tag_list,:tag_id, episodes_attributes:[:id,:url,:story_number]).merge(user_id: current_user.id)
   end
 
   def set_comic

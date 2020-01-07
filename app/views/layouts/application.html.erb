@@ -21,6 +21,7 @@
     </script>
   </head>
   <body>
+  
 <%# これでターボリンクが無効されて、再読み込みしなくてもインクリメンタルサーチができるらしい %>
   <% if content_for?(:body_attributes) %>
   <%= yield(:body_attributes) %>
@@ -36,7 +37,7 @@
               <!-- <%= current_user.nickname %> -->
               <%# <ul class="user__info"> %>
                 <%# <li> %>
-                  <%= link_to "マイページ[#{current_user.nickname}]", "/users/#{current_user.id}", class: "post" %>
+                  <%= link_to "マイページ", "/users/#{current_user.id}", class: "post" %>
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "post" %>
                 <%# </li> %>
                <%# </ul> %>
@@ -60,7 +61,7 @@
         <b><p>いいねランキング</p></b>
         <% @all_ranks.each.with_index(1) do |comic, i| %> 
           <div class="rank_in_title">
-            <%= "#{i}位#{comic.title}" %><br><%="いいね数#{comic.liked_users.count}" %>
+            <%= "#{i}位#{comic.title}" %><br>
           </div>
         <% end %>
       </div>

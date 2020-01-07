@@ -252,6 +252,7 @@ div.contents.row {
     display: flex;
     background-color: white;
     border-radius: 15px;
+    box-shadow: 2px 2px 4px gray;
 
     div.content_image {
     height: 250px;
@@ -272,9 +273,10 @@ div.contents.row {
       }
       
       .content_text {
-        
+        margin-left:10px;
+        font-size:20px;
         word-wrap: break-word;
-        width:350px;
+        width:500px;
       }
       div.like_view {
         padding:7px;
@@ -283,6 +285,7 @@ div.contents.row {
         border-radius: 10px;
         border:1px solid;
         margin-left:10px;
+        box-shadow: 2px 2px 4px;
         .like_count {
           color:white;
         }
@@ -429,9 +432,18 @@ footer {
   padding:8px;
   border-radius:8px;
   border:1px solid;
+  box-shadow: 2px 2px 4px gray;
+
 
 }
 
 .show_episode {
   margin: 0 auto;
+  font-size:20px;
+  
 }
+
+.edit_button {
+  margin-left:10px;
+}
+

@@ -11,8 +11,6 @@ $(function() {
                     <p class="content_text">${ comic.text }</p>
                     
                     
-      <a class="tags_name" href="/comics?${tag.id}" data-method="get">${tag.name}</a>
-    <br><br>
 
 
                   <span class="name">

@@ -4,12 +4,12 @@
   <div class="contents">
     <div class="content_title"><%= link_to "#{comic.title}","/comics/#{comic.id}", method: :get %></div>
     <% if user_signed_in? && current_user.id == comic.user_id %>
-      <a>
+      <a class="edit_button">
         <%= link_to '編集', "/comics/#{comic.id}/edit", method: :get %>
       </a>
       <a>
         <%= link_to '削除', "/comics/#{comic.id}", method: :delete %>
-      </a><br><br>
+      </a><br>
     <% end %>
     <p class="content_text"><%= comic.text %></p> 
     
