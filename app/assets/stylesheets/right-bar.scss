@@ -1,0 +1,27 @@
+.right-bar {
+  
+  z-index: 4;
+  position: fixed;
+  right: 0;
+  
+  width:300px;
+  margin-top:20px;
+  padding-top:50px;
+  height:calc(100% - 80px);
+  // float:right;
+  background-color:#D8D8D8;
+  border-left:1px solid #D8D8D8;
+  .ranking {
+    box-shadow: 2px 2px 4px gray;
+    background-color:white;
+    font-size:20px;
+    margin-left:10px;
+    margin-right:10px;
+    padding:5px 10px;
+    border-radius:15px;
+    .rank_in_title {
+      font-size:18px;
+      margin-bottom:25px;
+    }
+  }
+}

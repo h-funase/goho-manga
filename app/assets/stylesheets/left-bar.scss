@@ -1,0 +1,22 @@
+.left-bar {
+  margin-top:20px;
+  
+  position: fixed;
+  // margin-top:62px;
+  width:300px;
+  padding-top:40px;
+  height:calc(100% - 80px);
+  // float:left;
+  background-color:#D8D8D8;
+  
+  
+  border-right:1px solid #D8D8D8;
+  .introduce_text {
+    box-shadow: 2px 2px 4px gray;
+    background-color:white;
+    padding:20px;
+    border-radius: 15px;
+    margin:20px;
+    font-size:20px;
+  }
+}

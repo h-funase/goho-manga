@@ -20,45 +20,60 @@
       })();
     </script>
   </head>
-
   <body>
+  
 <%# これでターボリンクが無効されて、再読み込みしなくてもインクリメンタルサーチができるらしい %>
   <% if content_for?(:body_attributes) %>
   <%= yield(:body_attributes) %>
   <% end %>
 <%# これでターボリンクが無効されて、再読み込みしなくてもインクリメンタルサーチができるらしい %>
     <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">合法漫画</a></h1>
-        <% if user_signed_in? %>
-          <div class="user_nav grid-6">
-           <span><%= current_user.nickname %>
-            <ul class="user__info">
-              <li>
-                <%= link_to "マイページ", "/users/#{current_user.id}" %>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              </li>
-            </ul>
-          </span>
-            <%= link_to  "投稿する", "/comics/new", class: "post" %>
+        
+        <div class="header__bar row">
+        <b><a class="site-title" href="/">合法漫画</a></b>
+          <h1 class="grid-6"></h1>
+            <% if user_signed_in? %>
+              <div class="user_nav grid-6">
+              <!-- <%= current_user.nickname %> -->
+              <%# <ul class="user__info"> %>
+                <%# <li> %>
+                  <%= link_to "マイページ", "/users/#{current_user.id}", class: "post" %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "post" %>
+                <%# </li> %>
+               <%# </ul> %>
+              </span>
+                <%= link_to  "投稿する", "/comics/new", class: "post" %>
+              </div>
+            <% else %>
+            <div class="grid-6">
+              <%= link_to "ログイン", new_user_session_path, class: 'post' %>
+              <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+            </div>
+          <% end %>
           </div>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: 'post' %>
-            <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+      </div>
+    </header>
+
+    
+
+    <div class="right-bar">
+      <div class="ranking">
+        <b><p>いいねランキング</p></b>
+        <% @all_ranks.each.with_index(1) do |comic, i| %> 
+          <div class="rank_in_title">
+            <%= "#{i}位#{comic.title}" %><br>
           </div>
         <% end %>
-        </div>
       </div>
-      
-    </header>
+    </div>
+
+    <div class="left-bar">
+      <div class="introduce_text">2019年12月30日<br><br>ここは公式で無料配信されている漫画を紹介するサイトです。<br><br>無料で登録なく利用できますが、ユーザー登録をするといいねリストへの追加やコメント、新規投稿ができるようになります。</div>
+    </div>
 
     <%= yield %>
 
-    <footer>
-      <p>
-        Copyright GohoManga 2019.
-      </p>
-    </footer>
+    <%# <footer>
+    </footer> %>
   </body>
 </html>

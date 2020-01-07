@@ -1,25 +1,31 @@
-<div class="content_post" style="background-image: url(<%= comic.image %>);">
-      <div class="more">
-        <span><%= image_tag 'arrow_top.png' %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '詳細', "/comics/#{comic.id}", method: :get %>
-          </li>
-          <% if user_signed_in? && current_user.id == comic.user_id %>
-            <li>
-              <%= link_to '編集', "/comics/#{comic.id}/edit", method: :get %>
-            </li>
-            <li>
-              <%= link_to '削除', "/comics/#{comic.id}", method: :delete %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <%= simple_format(comic.title) %>
-      <span class="name">
+<div class="content_post" >
+  <div class="content_image" style="background-image: url(<%= comic.image %>);">
+  </div>
+  <div class="contents">
+    <div class="content_title"><%= link_to "#{comic.title}","/comics/#{comic.id}", method: :get %></div>
+    <% if user_signed_in? && current_user.id == comic.user_id %>
+      <a class="edit_button">
+        <%= link_to '編集', "/comics/#{comic.id}/edit", method: :get %>
+      </a>
+      <a>
+        <%= link_to '削除', "/comics/#{comic.id}", method: :delete %>
+      </a><br>
+    <% end %>
+    <p class="content_text"><%= comic.text %></p> 
+    
+    <% comic.tags.each do|tag| %>
+      <div class="tags_name"><%= link_to"・#{tag.name}",comics_path(tag_id: tag.id) %></div>
+    <% end %><br><br>
+    <div class="like_view">
+      <a class="far fa-thumbs-up"></a>
+      <a class="like_count"><%="いいね数#{comic.liked_users.count}" %></a>
+  </div>
+  </div>
+      <!--<span class="name">
         <a href="/users/<%= comic.user.id %>">
           <span>投稿者</span><%= comic.user.nickname %>
         </a>
-      </span>
-    </div>
-     <%= simple_format(comic.text) %>
+      </span> -->
+</div>
+    
+     

@@ -1,1 +1,7 @@
 $("<%= @id_name %>").html('<%= escape_javascript(render("likes/like", comic: @comic  )) %>');
+
+<% if flash[:notice] %>
+<% flash.each do |type, message| %>
+  $("#flash_messages").html("<%= message %>")
+  <% end %>
+<% end %>
